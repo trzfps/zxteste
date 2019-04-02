@@ -10,7 +10,7 @@ class PDVController {
         const response = await fetch('https://raw.githubusercontent.com/ZXVentures/code-challenge/master/files/pdvs.json')
         const data = await response.json();
         let {lat1, long1 } = req.body;
-        let pontosRecarga = data.pdvs.map(function (value) {
+        let PDVS = data.pdvs.map(function (value) {
             let coordenadas = value.address.coordinates.toString().split(',');
             let lat2 = coordenadas[0];
             let long2 = coordenadas[1];
@@ -33,7 +33,7 @@ class PDVController {
                 return 0;
             }
         }
-        let PDVSMaisProximos = pontosRecarga.sort(PDVMaisProximo("distancia"));
+        let PDVSMaisProximos = PDVS.sort(PDVMaisProximo("distancia"));
         res.send(PDVSMaisProximos)
     }
 
